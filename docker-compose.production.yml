@@ -1,0 +1,31 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ledger_app
+    networks:
+      - ledger_network
+    environment:
+      - NODE_ENV=production
+      - BASE_URL=http://localhost:7331
+      - SELF_HOSTED_MODE=false
+      - UPLOAD_PATH=/app/data/uploads
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "127.0.0.1:7331:7331"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100M"
+        max-file: "3"
+
+networks:
+  ledger_network:
+    driver: bridge
