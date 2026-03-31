@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardDescription, CardTitle } from "@/components/ui/card"
 import { ColoredText } from "@/components/ui/colored-text"
 import { getCurrentUser } from "@/lib/auth"
+import config from "@/lib/config"
 import { getSettings, updateSettings } from "@/models/settings"
 import { AppLogo } from "@/components/branding/app-logo"
 import { Banknote, ChartBarStacked, FolderOpenDot, Key, TextCursorInput, X } from "lucide-react"
@@ -53,7 +54,7 @@ export async function WelcomeWidget() {
               settings and change them however you want.
             </li>
             <li>
-              I save data in a <strong>local SQLite database</strong> and can export it to CSV and ZIP archives.
+              I save data in your <strong>PostgreSQL database</strong> and can export it to CSV and ZIP archives.
             </li>
             <li>
               You can even <strong>create your own new fields</strong> to be analyzed and they will be included in the
@@ -68,6 +69,19 @@ export async function WelcomeWidget() {
             recommend giving the results to a professional tax advisor for review when filing your taxes!
           </p>
         </CardDescription>
+        <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+          <Link href={config.app.sourceRepoUrl} className="text-blue-600 hover:underline" target="_blank" rel="noreferrer">
+            Source code
+          </Link>
+          <span className="text-muted-foreground">|</span>
+          <Link href={config.app.repoIssuesUrl} className="text-blue-600 hover:underline" target="_blank" rel="noreferrer">
+            Report an issue
+          </Link>
+          <span className="text-muted-foreground">|</span>
+          <Link href={config.app.authorSiteUrl} className="text-blue-600 hover:underline" target="_blank" rel="noreferrer">
+            Contact author
+          </Link>
+        </div>
         <div className="flex flex-wrap gap-2 mt-8">
           {settings.openai_api_key === "" && (
             <Link href="/settings/llm">

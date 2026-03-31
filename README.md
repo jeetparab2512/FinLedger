@@ -2,6 +2,16 @@
 
 Upload receipts and invoices, extract data with AI, organize transactions by category and project, and export for your accountant.
 
+## Screenshots
+
+Transactions view with the **New Transaction** dialog: name, merchant, amount, currency, type, category, project, and file attachments.
+
+![Transactions — New Transaction dialog](docs/screenshots/transactions-new-transaction.png)
+
+**Export** — filter by time range, category, and project; pick CSV columns; optionally bundle attached files in a ZIP.
+
+![Export Transactions dialog](docs/screenshots/export-transactions.png)
+
 ## Deploy with Docker
 
 ```bash
